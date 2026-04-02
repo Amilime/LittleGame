@@ -1,0 +1,40 @@
+# 忽略除 Assets、ProjectSettings、Packages 外的所有内容
+/*
+!/Assets/
+!/ProjectSettings/
+!/Packages/
+
+# 忽略 Assets 中的临时文件
+Assets/AssetStoreTools*
+Assets/StreamingAssets/*.asset
+*.csproj
+*.sln
+*.userprefs
+*.unityproj
+*.pidb
+*.booproj
+*.svd
+*.user
+*.tmp
+*.suo
+*.cache
+*.bak
+*.vs/
+*.vscode/
+
+# 忽略 Library 和 Temp（Unity 自动生成）
+/Library/
+/Temp/
+/Logs/
+/Build/
+/Builds/
+/UserSettings/
+
+# 忽略版本控制文件
+*.git*
+*.svn
+*.vs
+
+# 忽略系统文件
+.DS_Store
+Thumbs.db
