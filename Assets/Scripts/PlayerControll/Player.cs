@@ -81,8 +81,9 @@ public class Player : Entity
     {
         sword = _newSword;
     }
-    public void ClearTheSword()
+    public void CatchTheSword()
     {
+        stateMachine.ChangeState(catchSword);
         Destroy(sword);
     }
     public IEnumerator BusyFor(float _seconds)

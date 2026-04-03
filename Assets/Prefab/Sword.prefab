@@ -217,6 +217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnSpeed: 15
+  bounceSpeed: 10
 --- !u!212 &984488299854864883
 SpriteRenderer:
   m_ObjectHideFlags: 0
