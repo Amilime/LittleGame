@@ -6,6 +6,8 @@ public class Player : Entity
 { // 这些特别的属性就在玩家类自己定义
     [Header("Attack details")]
     public Vector2[] attackMovement;
+    public float counterAttackDuration = .2f;
+    
 
     public bool isBusy { get; private set; }
     [Header("Move info")]
@@ -13,11 +15,13 @@ public class Player : Entity
     public float jumpForce = 13f;
 
     [Header("Dash info")]
-    [SerializeField] private float dashCooldown;
-    private float dashUsageTimer;
     public float dashSpeed;
     public float dashDuration;
     public float dashDir { get; private set; }
+
+    public SkillManager skill { get; private set; }
+
+
     // 状态机
     #region States
     public PlayerStateMachine stateMachine { get; private set; }
@@ -31,6 +35,7 @@ public class Player : Entity
     public PlayerDashState dashState { get; private set; }
 
     public PlayerPrimaryAttackState primaryAttack { get; private set; }
+    public PlayerCounterAttackState counterAttack { get; private set; }
     #endregion
     protected override void Awake()
     { // 这里角色运动通过状态机控制
@@ -46,10 +51,14 @@ public class Player : Entity
         wallJump = new PlayerWallJumpState(this, stateMachine, "Jump");
 
         primaryAttack = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
+        counterAttack = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
     }
     protected override void Start()
     {
         base.Start();
+
+        skill = SkillManager.instance;
+
         stateMachine.Initialize(idleState);
     }
 
@@ -73,11 +82,11 @@ public class Player : Entity
     // 冲刺输入
     private void CheckForDashInput()
     {
-        dashUsageTimer -= Time.deltaTime;
+       
 
-        if (Input.GetKeyDown(KeyCode.LeftShift)&& dashUsageTimer <0)
+        if (Input.GetKeyDown(KeyCode.LeftShift)&& SkillManager.instance.dash.CanuseSkill())
         {
-            dashUsageTimer = dashCooldown;
+        
             dashDir = Input.GetAxisRaw("Horizontal");
             if (dashDir == 0)
                 dashDir = facingDir;
