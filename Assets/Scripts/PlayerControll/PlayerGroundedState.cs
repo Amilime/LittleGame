@@ -17,11 +17,14 @@ public class PlayerGroundedState : PlayerState
     public override void Exit()
     {
         base.Exit();
-    }
+    } 
 
     public override void Update()
     {
-        base.Update();
+        base.Update();  // EÍ¶ÖÀÎäÆ÷ Êó±ê×ó¼ü¹¥»÷ ÓÒ¼üµ¯·´
+        if (Input.GetKeyDown(KeyCode.E))
+            stateMachine.ChangeState(player.aimSword);
+
         if (Input.GetKeyDown(KeyCode.Mouse1))
             stateMachine.ChangeState(player.counterAttack);
 
