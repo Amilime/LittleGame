@@ -44,7 +44,9 @@ public class Sword_Skill : Skill
         GameObject newSword = Instantiate(swordPrefab, player.transform.position, transform.rotation);
         SwordSkill_Controller newSwordScript = newSword.GetComponent<SwordSkill_Controller>();
 
-        newSwordScript.SetupSword(finalDir, swordGravity);
+        newSwordScript.SetupSword(finalDir, swordGravity,player);
+
+        player.AssignNewSword(newSword);
 
         DotActive(false);
     }

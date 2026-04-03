@@ -14788,6 +14788,7 @@ MonoBehaviour:
   jumpForce: 13
   dashSpeed: 25
   dashDuration: 0.2
+  sword: {fileID: 0}
 --- !u!4 &1604606181
 Transform:
   m_ObjectHideFlags: 0
@@ -15066,8 +15067,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0
   swordPrefab: {fileID: 5061607870949639809, guid: ff3adcb592b5e2f408a0da7c5c47015a, type: 3}
-  launchForce: {x: 15, y: 20}
-  swordGravity: 4
+  launchForce: {x: 35, y: 25}
+  swordGravity: 4.5
   numberOfDots: 20
   spaceBetweenDots: 0.07
   dotPrefab: {fileID: 8280544006436547413, guid: 352f8629e67b6b54ca1b74bb320540e9, type: 3}
