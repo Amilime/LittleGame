@@ -11,7 +11,7 @@ public class PlayerWallJumpState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        stateTimer = 1f;
+        stateTimer = 0.2f;// 这里冷却时间，我改低一点
         player.SetVelocity(5 * -player.facingDir, player.jumpForce);
     }
 
