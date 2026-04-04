@@ -123,7 +123,8 @@ public class SwordSkill_Controller : MonoBehaviour
                     foreach (var hit in colliders)
                     {
                         if (hit.GetComponent<Enemy>() != null)
-                            hit.GetComponent<Enemy>().Damage();
+                            //hit.GetComponent<Enemy>().DamageEffect();
+                        player.stats.DoDamage(hit.GetComponent<CharacterStats>());
                     }
                 }
             }
@@ -145,7 +146,7 @@ public class SwordSkill_Controller : MonoBehaviour
 
             if (Vector2.Distance(transform.position, enemyTarget[targetIndex].position) < .1f)
             {
-                enemyTarget[targetIndex].GetComponent<Enemy>().Damage();
+                enemyTarget[targetIndex].GetComponent<Enemy>().DamageEffect();
                 targetIndex++;
                 bounceAmount--;
 
@@ -164,7 +165,7 @@ public class SwordSkill_Controller : MonoBehaviour
     {
         if (isReturning)
             return;
-        collision.GetComponent<Enemy>()?.Damage();
+        collision.GetComponent<Enemy>()?.DamageEffect();
         SetupTargetsForBounce(collision);
 
         StuckInto(collision);

@@ -26,6 +26,7 @@ public class Enemy : Entity
 
     // 相关东西从entity继承
     public EnemyStateMachine stateMachine { get; private set; }
+    public string lastAnimBoolName { get; private set; }
 
     protected override void Awake()
     {
@@ -37,6 +38,11 @@ public class Enemy : Entity
         base.Update();
         stateMachine.currentState.Update();
     }
+    public virtual void AssignLastAnimName(string _animBoolName)
+    {
+        lastAnimBoolName = _animBoolName;
+    }
+
     public virtual void OpenCounterAttackWindow()
     {
         canBeStunned = true;

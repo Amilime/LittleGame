@@ -38,6 +38,8 @@ public class Player : Entity
     public PlayerCounterAttackState counterAttack { get; private set; }
     public PlayerAimSwordState aimSword { get; private set; }
     public PlayerCatchSwordState catchSword { get; private set; }
+
+    public PlayerDeathState deadState { get; private set; }
     #endregion
     protected override void Awake()
     { // 这里角色运动通过状态机控制
@@ -57,6 +59,7 @@ public class Player : Entity
 
         aimSword = new PlayerAimSwordState(this, stateMachine, "AimSword");
         catchSword = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
+        deadState = new PlayerDeathState(this, stateMachine, "Die");
     }
     protected override void Start()
     {
@@ -109,4 +112,10 @@ public class Player : Entity
     }
 
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+
+    public override void Die()
+    {
+        base.Die();
+        stateMachine.ChangeState(deadState);
+    }
 }

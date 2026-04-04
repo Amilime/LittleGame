@@ -22,6 +22,9 @@ public class Entity : MonoBehaviour
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public EntityFX fx { get; private set; }
+
+    public CharacterStats stats { get; private set; }
+    public CapsuleCollider2D cd { get; private set; }
     #endregion
 
     [Header("Knockback info")]
@@ -29,6 +32,8 @@ public class Entity : MonoBehaviour
     [SerializeField] protected float knockbackDuration;
     protected bool isKnocked;
 
+
+    public System.Action onFlipped;
     protected virtual void Awake()
     {
 
@@ -39,12 +44,15 @@ public class Entity : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         fx = GetComponent<EntityFX>();
+        stats = GetComponent<CharacterStats>();
+        cd = GetComponent<CapsuleCollider2D>();
     }
     protected virtual void Update()
     {
 
     }
-    public virtual void Damage()
+    // 这里后面要全部改成DoDamage
+    public virtual void DamageEffect()
     {
         fx.StartCoroutine("FlashFX");
         StartCoroutine("HitKnockback");
@@ -80,6 +88,8 @@ public class Entity : MonoBehaviour
         facingDir = facingDir * -1;
         facingRight = !facingRight;
         transform.Rotate(0, 180, 0);
+
+        onFlipped?.Invoke();
     }
     public virtual void FlipController(float _x)
     {
@@ -100,4 +110,9 @@ public class Entity : MonoBehaviour
         FlipController(_xVelocity);
     }
     #endregion
+
+    public virtual void Die()
+    {
+        
+    }
 }
