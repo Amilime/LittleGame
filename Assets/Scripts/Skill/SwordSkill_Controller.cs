@@ -146,7 +146,11 @@ public class SwordSkill_Controller : MonoBehaviour
 
             if (Vector2.Distance(transform.position, enemyTarget[targetIndex].position) < .1f)
             {
-                enemyTarget[targetIndex].GetComponent<Enemy>().DamageEffect();
+                //enemyTarget[targetIndex].GetComponent<Enemy>().DamageEffect();
+                Enemy enemy = enemyTarget[targetIndex].GetComponent<Enemy>();
+                if (enemy != null && player != null)
+                    player.stats.DoDamage(enemy.stats); //Ìæ»»
+
                 targetIndex++;
                 bounceAmount--;
 
@@ -165,7 +169,11 @@ public class SwordSkill_Controller : MonoBehaviour
     {
         if (isReturning)
             return;
-        collision.GetComponent<Enemy>()?.DamageEffect();
+        //collision.GetComponent<Enemy>()?.DamageEffect();
+        Enemy enemy = collision.GetComponent<Enemy>();
+        if (enemy != null && player != null)
+            player.stats.DoDamage(enemy.stats);
+
         SetupTargetsForBounce(collision);
 
         StuckInto(collision);

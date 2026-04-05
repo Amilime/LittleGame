@@ -14,7 +14,7 @@ public class Stat
     {
         int finalValue = baseValue;
 
-        return baseValue;
+       // return baseValue;
 
         foreach(int modifier in modifiers)
         {
@@ -34,6 +34,6 @@ public class Stat
 
     public void RemoveModifier(int _modifier)
     {
-        modifiers.RemoveAt(_modifier);
+        modifiers.Remove(_modifier);
     }
 }

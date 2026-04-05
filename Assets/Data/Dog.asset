@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60a50e16a108ae74480120fc77640723, type: 3}
-  m_Name: Item_Chicken
+  m_Name: Dog
   m_EditorClassIdentifier: 
   itemType: 0
-  itemName: Chicken
-  icon: {fileID: -833144632, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
+  itemName: Dog
+  icon: {fileID: 1464289246, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}

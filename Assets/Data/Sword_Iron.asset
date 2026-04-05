@@ -16,3 +16,19 @@ MonoBehaviour:
   itemName: Sword
   icon: {fileID: 998750072, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
   equipmentType: 0
+  strength: 20
+  vitality: 0
+  agility: 0
+  damage: 50
+  critChance: 30
+  critPower: 100
+  maxHealth: 0
+  armor: 0
+  evasion: 0
+  craftingMaterials:
+  - data: {fileID: 11400000, guid: 4182a186e0eb2b544a5be5632c36622e, type: 2}
+    stackSize: 2
+  - data: {fileID: 11400000, guid: 6cc3a28de1c36f14196a882904c97340, type: 2}
+    stackSize: 1
+  - data: {fileID: 11400000, guid: dc9d1ec8920fd5149abe03794ba22cec, type: 2}
+    stackSize: 1

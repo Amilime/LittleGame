@@ -51,8 +51,9 @@ public class CharacterStats : MonoBehaviour
     public virtual void TakeDamage(int _damage)
     {
         DecreaseHealthBy(_damage);
+        Debug.Log("Cause damage:" + _damage);
 
-        Debug.Log(_damage);
+        //Debug.Log(_damage);
         if (currentHealth < 1)
             Die();
     }
