@@ -15,13 +15,15 @@ MonoBehaviour:
   itemType: 1
   itemName: Helmet
   icon: {fileID: -1570772297, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
+  dropChance: 0
+  equipmentType: 1
   strength: 0
-  vitality: 0
+  vitality: 10
   agility: 0
   damage: 0
-  critChance: 0
+  critChance: 5
   critPower: 0
-  maxHealth: 20
+  maxHealth: 50
   armor: 100
   evasion: 0
-  equipmentType: 1
+  craftingMaterials: []

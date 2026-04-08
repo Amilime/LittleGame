@@ -14,7 +14,14 @@ public class SkeletononGroundedState : EnemyState
     public override void Enter()
     { 
         base.Enter();
-        player = PlayerManager.instance.player.transform;
+        if (PlayerManager.instance != null && PlayerManager.instance.player != null)
+        {
+            player = PlayerManager.instance.player.transform;
+        }
+        else
+        {
+            player = null;
+        }
     }
 
     public override void Exit()
@@ -25,8 +32,31 @@ public class SkeletononGroundedState : EnemyState
     public override void Update()
     {
         base.Update();
-
-        if (enemy.IsplayerDetected() || Vector2.Distance(enemy.transform.position,player.position)<2)
-            stateMachine.ChangeState(enemy.battleState);
+        if (player == null)
+        {
+            // 尝试重新获取玩家引用
+            if (PlayerManager.instance != null && PlayerManager.instance.player != null)
+            {
+                player = PlayerManager.instance.player.transform;
+            }
+            else
+            {
+                // 如果玩家不存在，敌人应该进入空闲状态或停止追击
+                return;
+            }
+        }
+        if (player != null)
+        {
+            if (enemy.IsplayerDetected() || Vector2.Distance(enemy.transform.position, player.position) < 2)
+            {
+                stateMachine.ChangeState(enemy.battleState);
+            }
+        }
+        else
+        {
+            // 玩家不存在，敌人应该进入空闲状态
+            // 可以根据需要改变状态
+            Debug.Log("Player not found, enemy staying in ground state");
+        }
     }
 }

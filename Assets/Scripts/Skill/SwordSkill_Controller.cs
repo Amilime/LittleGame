@@ -221,7 +221,7 @@ public class SwordSkill_Controller : MonoBehaviour
         if (isBouncing && enemyTarget.Count > 0 )
             return;
 
-
+        
         anim.SetBool("Rotation", false);
         transform.parent = collision.transform;
     }

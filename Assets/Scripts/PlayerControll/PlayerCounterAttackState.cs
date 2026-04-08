@@ -11,7 +11,7 @@ public class PlayerCounterAttackState : PlayerState
     public override void Enter()
     {
         base.Enter();
-
+        AudioManager.instance.PlaySFX(2); // ¹¥»÷ÒôĞ§
         stateTimer = player.counterAttackDuration;
         player.anim.SetBool("SuccessfulCounterAttack",false);
     }

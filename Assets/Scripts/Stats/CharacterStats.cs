@@ -25,6 +25,8 @@ public class CharacterStats : MonoBehaviour
     public int currentHealth;
     public System.Action onHealthChanged;
 
+    public bool isDead { get; private set; }
+
     protected virtual void Start()
     {
         critPower.SetDefaultValue(150);
@@ -67,7 +69,12 @@ public class CharacterStats : MonoBehaviour
 
     protected virtual void Die()
     {
-
+        isDead = true;
+    }
+    public void KillEntity()
+    {
+        if (!isDead)
+            Die();
     }
     private bool CanAvoidAttack(CharacterStats _targetStats)
     {

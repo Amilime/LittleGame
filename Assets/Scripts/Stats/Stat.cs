@@ -8,7 +8,11 @@ public class Stat
     [SerializeField] private int baseValue;
 
     public List<int> modifiers;
-    
+    public System.Action onValueChanged;
+    public Stat()
+    {
+        modifiers = new List<int>();
+    }
 
     public int GetValue()
     {
@@ -26,14 +30,17 @@ public class Stat
     public void SetDefaultValue(int _value)
     {
         baseValue = _value;
+        onValueChanged?.Invoke();
     }
     public void AddModifier(int _modifier)
     {
         modifiers.Add(_modifier);
+        onValueChanged?.Invoke();
     }
 
     public void RemoveModifier(int _modifier)
     {
         modifiers.Remove(_modifier);
+        onValueChanged?.Invoke();
     }
 }

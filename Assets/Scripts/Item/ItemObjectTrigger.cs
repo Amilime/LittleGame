@@ -9,6 +9,10 @@ public class ItemObjectTrigger : MonoBehaviour
     {
         if (collision.GetComponent<Player>() != null)
         {
+            // 从碰撞到的物体上获取 CharacterStats 组件
+            if (collision.GetComponent<CharacterStats>().isDead)
+                return;
+            Debug.Log("Picked up item");
             myItemObject.PickUpItem();
         }
     }

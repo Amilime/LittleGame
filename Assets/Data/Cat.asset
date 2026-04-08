@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   itemName: Cat
-  icon: {fileID: 1939929060, guid: bdeaeacf91e805f449e7fa66d480d644, type: 3}
+  icon: {fileID: 1236639578, guid: bdeaeacf91e805f449e7fa66d480d644, type: 3}
+  dropChance: 0

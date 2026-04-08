@@ -7,6 +7,7 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler // ’‚¿Ô”√Ω”ø⁄µ˜”√µ
 {
     [SerializeField] private Image itemImage;
     [SerializeField] private TextMeshProUGUI itemText;
+    [SerializeField] private GameObject dropPrefab;
 
     public InventoryItem item;
    
@@ -40,7 +41,30 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler // ’‚¿Ô”√Ω”ø⁄µ˜”√µ
 
     public virtual void OnPointerDown(PointerEventData eventData)
     {
+        if (item == null) return;
+
+        if (Input.GetKey(KeyCode.T))
+        {
+            DropItem();
+            
+           // Inventory.instance.RemoveItem(item.data);
+            return;
+        }
         if (item.data.itemType == ItemType.Equipment)
             Inventory.instance.EquipItem(item.data);
+    }
+    private void DropItem()
+    {
+        // ªÒ»°ÕÊº“Œª÷√
+        Transform player = PlayerManager.instance.player.transform;
+
+        Vector3 dropPosition = player.position + new Vector3(Random.Range(-0.3f, 0.3f), 0.5f, 0);
+        // …˙≥…µÙ¬‰ŒÔ
+        GameObject newDrop = Instantiate(dropPrefab, player.position, Quaternion.identity);
+        Vector2 randomVelocity = new Vector2(Random.Range(-5, 5), Random.Range(12, 15));
+        newDrop.GetComponent<ItemObject>().SetupItem(item.data, randomVelocity);
+
+        // ¥”ø‚¥Ê÷–“∆≥˝
+        Inventory.instance.RemoveItem(item.data);
     }
 }

@@ -6,6 +6,8 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
 
+    public List<ItemData> startingEquipment;
+
     public List<InventoryItem> equipment;
     public Dictionary<ItemData_Equipment, InventoryItem> equipmentDictionary;
 
@@ -47,6 +49,17 @@ public class Inventory : MonoBehaviour
         InventoryItemSlot = inventorySlotParent.GetComponentsInChildren<UI_ItemSlot>();
         stashItemSlot = stashSlotParent.GetComponentsInChildren<UI_ItemSlot>();
         equipmentItemSlot = equipmentSlotParent.GetComponentsInChildren<UI_EquipmentSlot>();
+
+        AddStartingItems();
+
+    }
+
+    private void AddStartingItems()
+    {
+        for (int i = 0; i < startingEquipment.Count; i++)
+        {
+            AddItem(startingEquipment[i]);
+        }
     }
 
     public void EquipItem(ItemData _item)
@@ -87,7 +100,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void UpdateSlotUI()
+    public void UpdateSlotUI()
     {
         for (int i = 0; i < equipmentItemSlot.Length; i++)
         {
@@ -99,7 +112,7 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
-
+        // ÕâÀïÊÇÉ¾³ý²å²Û
         for (int i=0; i < InventoryItemSlot.Length; i++)
         {
             InventoryItemSlot[i].CleanUpSlot();
@@ -108,6 +121,7 @@ public class Inventory : MonoBehaviour
         {
             stashItemSlot[i].CleanUpSlot();
         }
+        
 
 
 
@@ -119,11 +133,12 @@ public class Inventory : MonoBehaviour
         {
             stashItemSlot[i].UpdateSlot(stash[i]);
         }
+      
     }
 
-    public void AddItem(ItemData _item)
+    public void AddItem(ItemData _item )
     {
-        if (_item.itemType == ItemType.Equipment)      
+        if (_item.itemType == ItemType.Equipment && CanAddItem())      
             AddToInventory(_item);      
         else if(_item.itemType == ItemType.Material)        
             AddToStash(_item);     
@@ -187,6 +202,15 @@ public class Inventory : MonoBehaviour
         UpdateSlotUI();
     }
     
+    public bool CanAddItem()
+    {
+        if(inventory.Count >= InventoryItemSlot.Length)
+        {
+            Debug.Log("No more space");
+            return false;
+        }
+        return true;
+    }
     public bool CanCraft(ItemData_Equipment _itemToCraft,List<InventoryItem> _requireMaterials)
     {
         List<InventoryItem> materialToRemove = new List<InventoryItem>();
@@ -220,4 +244,10 @@ public class Inventory : MonoBehaviour
         return true;
 
     }
+
+    public List<InventoryItem> GetEquipmentList() => equipment;
+
+    public List<InventoryItem> GetStashList() => stash;
+
+    //public List<InventoryItem> GetInventoryList() => inventory;
 }
